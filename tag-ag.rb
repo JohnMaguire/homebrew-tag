@@ -1,29 +1,23 @@
-HOMEBREW_TAG_VERSION="v1.4.0".freeze
+HOMEBREW_TAG_VERSION="v1.4.1".freeze
 class TagAg < Formula
   desc "Instantly jump to your ag or ripgrep matches."
-  homepage "https://github.com/aykamko/tag"
-  url "https://github.com/aykamko/tag/releases/download/#{HOMEBREW_TAG_VERSION}/tag_darwin_amd64.zip"
-  sha256 "d5cfe843e0953e1f440a82e488d54b0a9f51671a70bba74f7417107c788f1796"
+  homepage "https://github.com/JohnMaguire/tag"
+  url "https://github.com/JohnMaguire/tag/archive/refs/tags/#{HOMEBREW_TAG_VERSION}-JohnMaguire.tar.gz"
+  sha256 "d6771f8304e4ef28bbc531c50afa145147125ed94c4362e1c9665598749a0283"
 
   version HOMEBREW_TAG_VERSION
-  head "https://github.com/aykamko/tag.git", :branch => "master"
+  head "https://github.com/JohnMaguire/tag.git", :branch => "master"
 
-  depends_on "the_silver_searcher" => :build
-  if build.head?
-    depends_on "hg" => :build
-    depends_on "go" => :build
-  end
+  depends_on "go" => :build
 
   def install
-    go_build if build.head?
+    go_build
     bin.install "tag"
   end
 
   def go_build
-    ENV["GOPATH"] = buildpath
-    system "go", "get", "github.com/fatih/color"
-    mkdir_p buildpath/"src/github.com/aykamko"
-    ln_s buildpath, buildpath/"src/github.com/aykamko/tag"
+    mkdir_p buildpath/"src/github.com/JohnMaguire"
+    ln_s buildpath, buildpath/"src/github.com/JohnMaguire/tag"
     system "go", "build", "-o", "tag"
   end
 

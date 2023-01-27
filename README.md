@@ -1,12 +1,12 @@
 # homebrew-tag
 
-This formula provides [aykamko/tag](https://github.com/aykamko/tag).
+This formula provides my [personal fork](https://github.com/JohnMaguire/tag) of [aykamko/tag](https://github.com/aykamko/tag).
 
 # How to install
 
 Run the following:
 
 ```
-brew tap aykamko/tag
+brew tap JohnMaguire/tag
 brew install tag-ag
 ```
